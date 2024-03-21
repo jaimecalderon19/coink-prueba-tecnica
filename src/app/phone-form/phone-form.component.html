@@ -1,0 +1,26 @@
+<ion-row style="margin-top: 4rem;">
+  <ion-col size="4">
+    <ion-img
+            src="/assets/images/logo.png"
+            alt="logo coink"
+          ></ion-img>
+  </ion-col>
+  <ion-col size="7">
+    <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+      <p>Para Comenzar por favor ingresa <b>tu numero de celular</b></p>
+    </div>
+  </ion-col>
+  <ion-col style="margin: 0 auto;" size="10">
+    <form [formGroup]="formGroup" >
+      <div style="height: 2px; width: 98%; display: flex; background-color: #77F265;">
+
+      </div>
+      <div style="display: flex; justify-content: center; width: 100%; margin-top: 3rem;">
+        <input  type="number" pInputText placeholder="xxx - xxxxxx" formControlName="value" />
+      </div>
+
+      <ion-button style="margin-top: 2rem;" color="primary" (click)="updatePhone()" [disabled]="formGroup.get('value')?.value === '' || formGroup.get('value')?.value === null"  expand="block">Siguiente</ion-button>
+
+  </form>
+  </ion-col>
+</ion-row>

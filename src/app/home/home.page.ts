@@ -1,17 +1,25 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RefresherCustomEvent } from '@ionic/angular';
-import { MessageComponent } from '../message/message.component';
-
-import { DataService, Message } from '../services/data.service';
+import { DataService, UserData } from '../services/data.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
   private data = inject(DataService);
-  constructor() {}
+  visible = true;
+  dataUser: UserData | null = null;
+
+  constructor(private dataService: DataService) { }
+
+  ngOnInit() {
+    // Subscribe to dataUser$ to receive updates
+    this.dataService.dataUser$.subscribe(userData => {
+      this.dataUser = userData;
+    });
+  }
 
   refresh(ev: any) {
     setTimeout(() => {
@@ -19,7 +27,4 @@ export class HomePage {
     }, 3000);
   }
 
-  getMessages(): Message[] {
-    return this.data.getMessages();
-  }
 }

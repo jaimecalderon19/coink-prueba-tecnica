@@ -1,0 +1,27 @@
+<ion-content [fullscreen]="true">
+  <div class="div-con-sombra-inferior" style="padding-top: 1rem;">
+
+    <div class="container">
+      <div class="back-button">
+        <ion-button fill="clear" [routerLink]="['/access']">
+          <ion-icon name="chevron-back-outline" size="large" color="primary"></ion-icon>
+        </ion-button>
+      </div>
+
+        <h3 class="centered-title">{{ title  }}</h3>
+
+    </div>
+
+  <ion-row>
+  <ion-col size="12">
+    <div class="card">
+        <p-steps [model]="items" [readonly]="true"></p-steps>
+    </div>
+  </ion-col>
+</ion-row>
+</div>
+
+
+  <router-outlet></router-outlet>
+
+</ion-content>

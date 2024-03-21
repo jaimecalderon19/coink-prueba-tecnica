@@ -3,11 +3,9 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 
-import { HomePage } from './home.page';
-import { HomePageRoutingModule } from './home-routing.module';
+import { LoginPage } from './login.page';
+import { LoginPageRoutingModule } from './login-routing.module';
 import { MessageComponentModule } from '../message/message.module';
-import { DialogModule } from 'primeng/dialog';
-import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   imports: [
@@ -15,10 +13,8 @@ import { ButtonModule } from 'primeng/button';
     FormsModule,
     IonicModule,
     MessageComponentModule,
-    HomePageRoutingModule,
-    DialogModule,
-    ButtonModule
+    LoginPageRoutingModule
   ],
-  declarations: [HomePage]
+  declarations: [LoginPage]
 })
-export class HomePageModule {}
+export class LoginModule {}

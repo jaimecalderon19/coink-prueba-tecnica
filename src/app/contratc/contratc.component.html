@@ -1,0 +1,55 @@
+<ion-row style="margin-top: 4rem;">
+  <ion-col size="4">
+    <ion-img
+            src="/assets/images/logo.png"
+            alt="logo coink"
+          ></ion-img>
+  </ion-col>
+  <ion-col size="7">
+    <div style="display: flex; justify-content: space-around; align-items: center; height: 100%; flex-direction: column;">
+      <h3 style="font-size: 20px; color: #004B40; font-weight: 600; margin: 0;">Estas muy cerca de ser parte de coink.</h3>
+      <p>Solo es necesario que leas
+        detenidamente el contrato que se
+        encuentra al final de esta pantalla y
+        lo aceptes.</p>
+    </div>
+  </ion-col>
+  <ion-col style="margin: 0 auto;" size="10">
+
+      <div style="height: 2px; width: 98%; display: flex; background-color: #77F265;">
+      </div>
+
+      <ion-row style="margin-top: 4rem;">
+        <ion-col size="12">
+          <h4 style="color: #004B40; font-weight: 600;">LO MAS IMPORTANTE</h4>
+        </ion-col>
+        <ion-col size="12">
+          <P style="font-weight: 500;">
+            Para la apertura del Depósito de Bajo Monto en COINK debes ser una persona natural que de acuerdo con nuestra legislación vigente te encuentres en plena capacidad para adquirir derechos y contraer obligaciones.
+          </P>
+          <P style="font-weight: 500;">
+
+            Abrirás una cuenta COINK de Bajo Monto la cual te permitirá tener un saldo hasta por 8 salarios mínimos en el mes y realizar débitos por el mismo valor. Si deseas sobrepasar estos límites debes solicitarnos la apertura de un Depósito Ordinario COINK Persona Natural.
+          </P>
+          <P style="font-weight: 500;">
+
+            Solo puedes tener una cuenta COINK de Bajo Monto y podrás utilizar tu dispositivo móvil para consultar tu saldo, tus movimientos, realizar tus transacciones y administrar tu cuenta.
+          </P>
+          <P style="font-weight: 500;">
+            Recuerda que no necesitas saldo mínimo ni monto inicial para su apertura.
+          </P>
+        </ion-col>
+        <ion-col size="12">
+          <h4 style="font-size: 18px; color: #004B40; font-weight: 600; text-decoration: underline;">Lee tu contrato</h4>
+        </ion-col>
+        <ion-col size="12">
+          <p-checkbox (onChange)="checked = !checked" [value]="checked" [binary]="true" label="He leido y acepto el contrato" inputId="binary"></p-checkbox>
+        </ion-col>
+        <ion-col size="12">
+            <ion-button (click)="navigateToHome()" expand="block" [disabled]="checked === false">Aceptar</ion-button>
+        </ion-col>
+      </ion-row>
+
+
+  </ion-col>
+</ion-row>

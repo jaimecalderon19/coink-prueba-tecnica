@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 export interface Message {
   fromName: string;
@@ -12,72 +13,46 @@ export interface Message {
   providedIn: 'root'
 })
 export class DataService {
-  public messages: Message[] = [
-    {
-      fromName: 'Matt Chorsey',
-      subject: 'New event: Trip to Vegas',
-      date: '9:32 AM',
-      id: 0,
-      read: false
-    },
-    {
-      fromName: 'Lauren Ruthford',
-      subject: 'Long time no chat',
-      date: '6:12 AM',
-      id: 1,
-      read: false
-    },
-    {
-      fromName: 'Jordan Firth',
-      subject: 'Report Results',
-      date: '4:55 AM',
-      id: 2,
-      read: false
-    },
-    {
-      fromName: 'Bill Thomas',
-      subject: 'The situation',
-      date: 'Yesterday',
-      id: 3,
-      read: false
-    },
-    {
-      fromName: 'Joanne Pollan',
-      subject: 'Updated invitation: Swim lessons',
-      date: 'Yesterday',
-      id: 4,
-      read: false
-    },
-    {
-      fromName: 'Andrea Cornerston',
-      subject: 'Last minute ask',
-      date: 'Yesterday',
-      id: 5,
-      read: false
-    },
-    {
-      fromName: 'Moe Chamont',
-      subject: 'Family Calendar - Version 1',
-      date: 'Last Week',
-      id: 6,
-      read: false
-    },
-    {
-      fromName: 'Kelly Richardson',
-      subject: 'Placeholder Headhots',
-      date: 'Last Week',
-      id: 7,
-      read: false
-    }
-  ];
 
-  constructor() { }
 
-  public getMessages(): Message[] {
-    return this.messages;
+
+  private _titleSubject = new BehaviorSubject<string>('Datos de la cuenta'); // Default title
+  title$: Observable<string> = this._titleSubject.asObservable()
+
+
+  private dataUserSubject = new BehaviorSubject<UserData | null>(null);
+  dataUser$: Observable<UserData | null> = this.dataUserSubject.asObservable();
+
+  updateDataUserPhone(phone: string) {
+
+    const updatedDataUser = {...this.dataUserSubject.getValue(), phone} as UserData;
+    this.dataUserSubject.next(updatedDataUser);
   }
 
-  public getMessageById(id: number): Message {
-    return this.messages[id];
+  updateDataUser(userData: UserData) {
+    this.dataUserSubject.next(userData);
   }
+
+  getDataUser(): UserData | null {
+    return this.dataUserSubject.getValue(); // Get current value (optional)
+  }
+
+  setTitle(title: string): void {
+    this._titleSubject.next(title); // Emit new value
+  }
+
+
+  getTitle(): string {
+    return this._titleSubject.getValue(); // Get current value (optional)
+  }
+}
+
+
+export interface UserData {
+  phone: string;
+  document: string;
+  dateExpedition: string;
+  dateBirth: string;
+  gender: string;
+  email: string;
 }

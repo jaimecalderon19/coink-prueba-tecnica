@@ -1,0 +1,73 @@
+<ion-row style="margin-top: 4rem;">
+  <ion-col size="4">
+    <ion-img
+            src="/assets/images/logo.png"
+            alt="logo coink"
+          ></ion-img>
+  </ion-col>
+  <ion-col size="7">
+    <div style="display: flex; justify-content: space-around; align-items: center; height: 100%; flex-direction: column;">
+      <h3 style="font-size: 20px; color: #004B40; font-weight: 600; margin: 0;">Cuales son tus datos?</h3>
+      <p>Ahora necesitamos saber algunos datos tuyos</p>
+    </div>
+  </ion-col>
+  <ion-col style="margin: 0 auto;" size="10">
+    <form [formGroup]="formGroup" (ngSubmit)="validateForm()">
+      <div style="height: 2px; width: 98%; display: flex; background-color: #77F265;">
+      </div>
+
+      <ion-row style="margin-top: 4rem;">
+        <ion-col size="12">
+          <h4 style="color: #004B40; font-weight: 600;">Documento de identidad</h4>
+        </ion-col>
+        <ion-col size="12">
+          <p-dropdown [style]="{width: '100%'}"  [options]="[{ value: 'ti', name: 'Targeta de identidad'}, { value:'cc', name: 'Cedula de ciudania'}]" formControlName="type_document" optionLabel="name" [showClear]="true" placeholder="Tipo de Documento"></p-dropdown>
+        </ion-col>
+        <ion-col size="12">
+          <input  style="width: 100%;" type="number" pInputText placeholder="Numero de Documento" formControlName="num_document" />
+        </ion-col>
+        <ion-col size="12">
+          <p-calendar [style]="{width: '100%'}" formControlName="date_expedition_document" placeholder="Fecha de expedicion del documento"></p-calendar>
+        </ion-col>
+        <ion-col size="12">
+          <p-calendar [style]="{width: '100%'}" formControlName="date_of_birth_document" placeholder="Fecha de nacimiento"></p-calendar>
+        </ion-col>
+        <ion-col size="12">
+          <p-dropdown [style]="{width: '100%'}"  [options]="['Masculino','Femenino']" formControlName="gender" [showClear]="true" placeholder="Genero"></p-dropdown>
+        </ion-col>
+        <ion-col size="12">
+          <h4 style="color: #004B40;  font-weight: 600;">Configura tu cuenta</h4>
+        </ion-col>
+        <ion-col size="12">
+          <input  style="width: 100%;" required type="email" pInputText placeholder="Correo" formControlName="email" />
+        </ion-col>
+        <ion-col size="12">
+          <input  style="width: 100%;" required type="email" pInputText placeholder="Confirmar Correo" formControlName="comfirm_email" />
+          @if (noEsValido('comfirm_email')) {
+            <span style="color: red;">{{getMensaje('comfirm_email')}}</span>
+          }@else if (formGroup.get('email')?.value !== formGroup.get('comfirm_email')?.value && (formGroup.get('email')?.touched || formGroup.get('comfirm_email')?.touched)) {
+            <span style="color: red;">Los Correos no coinciden</span>
+          }
+        </ion-col>
+        <ion-col size="12">
+          <p-password [style]="{width: '100%'}" placeholder="PIN de seguridad" [maxLength]="4" required [inputStyle]="{width: '100%'}" [toggleMask]="true" [feedback]="false" formControlName="pin" ></p-password>
+          @if (noEsValido('pin')) {
+            <span style="color: red;">{{getMensaje('pin')}}</span>
+          }
+        </ion-col>
+        <ion-col size="12">
+          <p-password [style]="{width: '100%'}" placeholder="Confirmar PIN de seguridad" [maxLength]="4" type="number" required [inputStyle]="{width: '100%'}" [toggleMask]="true" [feedback]="false" formControlName="confirm_pin" ></p-password>
+          @if (noEsValido('confirm_pin')) {
+            <span style="color: red;">{{getMensaje('confirm_pin')}}</span>
+          } @else if (formGroup.get('pin')?.value !== formGroup.get('confirm_pin')?.value && (formGroup.get('pin')?.touched || formGroup.get('confirm_pin')?.touched)) {
+            <span style="color: red;">Los Pines no coinciden</span>
+          }
+        </ion-col>
+        <ion-col size="12">
+          <ion-button expand="block" [disabled]="formGroup.invalid" type="submit">Siguiente</ion-button>
+        </ion-col>
+      </ion-row>
+
+  </form>
+  </ion-col>
+</ion-row>
